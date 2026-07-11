@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Job Seeker Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+    background:#f4f7fc;
+}
+
+/* Navbar */
+
+.navbar{
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+/* Hero */
+
+.hero{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:white;
+    padding:50px;
+    border-radius:20px;
+    margin-bottom:40px;
+}
+
+/* Stats */
+
+.stats{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.stats h2{
+    font-weight:bold;
+}
+
+/* Job Card */
+
+.job-card{
+    border:none;
+    border-radius:18px;
+    transition:.3s;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.job-card:hover{
+    transform:translateY(-8px);
+}
+
+.salary{
+    background:#198754;
+    color:white;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.skill{
+    background:#e7f1ff;
+    color:#0d6efd;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:13px;
+    margin-right:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+<div class="container">
+
+<a class="navbar-brand fw-bold" href="/">
+
+<i class="fa-solid fa-briefcase"></i>
+
+Job Portal
+
+</a>
+
+<div>
+
+<a href="/profile" class="btn btn-light">
+
+<i class="fa-solid fa-user"></i>
+
+Profile
+
+</a>
+
+</div>
+
+</div>
+
+</nav>
+
+<div class="container my-5">
+
+<!-- Hero -->
+
+<div class="hero text-center">
+
+<h1>
+
+Find Your Dream Job 🚀
+
+</h1>
+
+<p>
+
+Browse thousands of jobs from top companies.
+
+</p>
+
+<div class="row justify-content-center mt-4">
+
+<div class="col-md-6">
+
+<input
+type="text"
+class="form-control form-control-lg"
+placeholder="Search by job title...">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Statistics -->
+
+<div class="row mb-5">
+
+<div class="col-md-4">
+
+<div class="card stats text-center p-4">
+
+<h6>Total Jobs</h6>
+
+<h2 class="text-primary">
+
+<%= jobs.length %>
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card stats text-center p-4">
+
+<h6>Companies</h6>
+
+<h2 class="text-success">
+
+50+
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card stats text-center p-4">
+
+<h6>Remote Jobs</h6>
+
+<h2 class="text-warning">
+
+20+
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Jobs -->
+
+<h3 class="mb-4">
+
+Latest Jobs
+
+</h3>
+
+<div class="row">
+
+<% if(jobs.length===0){ %>
+
+<div class="text-center p-5">
+
+<i class="fa-solid fa-folder-open fa-5x text-secondary mb-3"></i>
+
+<h3>No Jobs Available</h3>
+
+<p class="text-muted">
+
+Please check again later.
+
+</p>
+
+</div>
+
+<% } %>
+
+<% jobs.forEach(job=>{ %>
+
+<div class="col-lg-4 col-md-6 mb-4">
+
+<div class="card job-card h-100">
+
+<div class="card-body">
+
+<div class="d-flex justify-content-between">
+
+<h5 class="fw-bold">
+
+<%= job.title %>
+
+</h5>
+
+<i class="fa-regular fa-bookmark fs-5"></i>
+
+</div>
+
+<p class="text-muted">
+
+<i class="fa-solid fa-building text-primary"></i>
+
+<%= job.company %>
+
+</p>
+
+<p>
+
+<i class="fa-solid fa-location-dot text-danger"></i>
+
+<%= job.location %>
+
+</p>
+
+<p>
+
+<span class="salary">
+
+₹ <%= job.salary || "Not Mentioned" %>
+
+</span>
+
+</p>
+
+<div class="mb-3">
+
+<span class="skill">HTML</span>
+
+<span class="skill">CSS</span>
+
+<span class="skill">JavaScript</span>
+
+</div>
+
+<p class="text-muted">
+
+<i class="fa-regular fa-clock"></i>
+
+Posted Recently
+
+</p>
+
+<a
+href="/jobs/<%= job._id %>"
+class="btn btn-primary w-100">
+
+View Details
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<% }) %>
+
+</div>
+
+</div>
+
+<footer class="bg-dark text-white text-center p-4 mt-5">
+
+© 2026 Job Portal | Built with ❤️ using Node.js, Express & MongoDB
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

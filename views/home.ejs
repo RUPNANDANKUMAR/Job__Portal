@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Portal</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container">
+
+          <a class="navbar-brand" href="/home">Job Portal</a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+
+          <ul class="navbar-nav me-auto">
+
+          <li class="nav-item">
+          <a class="nav-link active" href="/home">Home</a>
+          </li>
+
+          <li class="nav-item">
+          <a class="nav-link" href="/jobs">Jobs</a>
+          </li>
+
+          <li class="nav-item">
+          <a class="nav-link" href="/jobs/new">Post Job</a>
+          </li>
+
+          <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+          </li>
+
+          <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+          </li>
+
+
+          <li class="nav-item">
+          <a class="nav-link" href="/recruiter/dashboard">Recruiter Dashboard</a>
+          </li>
+
+          <li class="nav-item">
+          <a class="nav-link" href="/jobseeker/dashboard">Jobseeker Dashboard</a>
+          </li>
+
+          </ul>
+
+
+        <form class="d-flex" action="/jobs/search" method="GET">
+              <input 
+              class="form-control me-2" 
+              type="search" 
+              name="location" 
+              placeholder="Search jobs by location">
+              <button class="btn btn-outline-light">Search</button>
+        </form>
+          </div>
+          </div>
+      </nav>
+
+
+      <div class="container mt-5 text-center">
+
+        <h1 class="mb-3">Welcome to Job Portal</h1>
+
+        <p class="lead">Find your dream job or post jobs as a recruiter.</p>
+
+        <a href="/jobs" class="btn btn-primary mt-3">Browse Jobs</a>
+
+        <a href="/jobs/new" class="btn btn-success mt-3">Post a Job</a>
+
+      </div>
+
+
+      <div class="container mt-5">
+
+        <h2 class="mb-4 text-center">Latest Jobs</h2>
+
+        <div class="row">
+
+        <% jobs.forEach(job => { %>
+
+        <div class="col-md-4">
+
+        <div class="card mb-4 shadow-sm">
+
+        <div class="card-body">
+
+        <h5 class="card-title"><%= job.title %></h5>
+
+        <h6 class="card-subtitle mb-2 text-muted"><%= job.company %></h6>
+
+        <p><strong>Location:</strong> <%= job.location %></p>
+
+        <p><strong>Salary:</strong> ₹ <%= job.salary %></p>
+
+        <p><%= job.description.substring(0,80) %>...</p>
+
+        <a href="/jobs/<%= job._id %>" class="btn btn-primary btn-sm">View Details</a>
+
+        </div>
+
+        </div>
+
+      </div>
+
+      <% }) %>
+
+      </div>
+
+      </div>
+
+
+      <footer class="text-center mt-5 mb-3">
+      <p>© 2026 Job Portal | All rights reserved</p>
+      </footer>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
